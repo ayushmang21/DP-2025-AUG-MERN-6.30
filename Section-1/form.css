@@ -21,7 +21,7 @@ body {
     width: 30%;
     padding: 30px 40px;
     border-radius: 10px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+    /* box-shadow: 5px 5px 10px rgba(107, 107, 107, 0.4); */
     backdrop-filter: blur(5px);
 }
 
@@ -54,7 +54,8 @@ label{
     width: 50%;
     margin: 15px auto;
     border-radius: 8px;
-    border: 2px solid black;
+    /* border: 2px solid black; */
+    border: none;
 }
 .acc{
     text-align: center;
