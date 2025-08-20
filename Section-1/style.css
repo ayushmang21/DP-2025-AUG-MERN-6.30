@@ -1,0 +1,16 @@
+.box{
+    width: 200px;
+    height: 200px;
+    background-color: rgb(255, 255, 255);
+    /* border-radius: 100%; */
+    /* box-shadow: 50px 50px 10px 50px black; */
+    /* margin-top: 15px; */
+    margin: 20px;
+    border: 6px dashed #000000;
+    padding: 30px;
+}
+body{
+    font-family: Quicksand;
+    background-color: rgb(175, 124, 222);
+    
+}

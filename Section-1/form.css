@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Noto Sans Display;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(https://images.pexels.com/photos/3558700/pexels-photo-3558700.jpeg?_gl=1*1ft8gwa*_ga*MjEzNzE2MjExMS4xNzU1Njk5Nzcz*_ga_8JE65Q40S6*czE3NTU2OTk3NzMkbzEkZzEkdDE3NTU2OTk4OTIkajEwJGwwJGgw);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.card{
+    background-color: rgba(255, 255, 255, 0.082);
+    width: 30%;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+}
+
+.form-title{
+    text-align: center;
+    font-size: 30px;
+    margin: 10px;
+    color: white;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+label{
+    margin-top: 15px;
+    font-size: 20px;
+    font-weight: 500;
+    color: white;
+}
+.text-input{
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+}
+.btn{
+    padding: 5px 10px;
+    font-size: 18px;
+    font-weight: 500;
+    width: 50%;
+    margin: 15px auto;
+    border-radius: 8px;
+    border: 2px solid black;
+}
+.acc{
+    text-align: center;
+    margin-top: 15px;
+    color: white;
+}
+.link{
+    text-align: right;
+    color: white;
+}
