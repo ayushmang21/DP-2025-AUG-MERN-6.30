@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .child{
+            width: 150px;
+            background-color: teal;
+            padding: 30px;
+            margin: 10px;
+            border: 2px solid black;
+            text-align: center;
+            font-weight: 600;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        .parent{
+            display: flex;
+            height: 100vh;
+            background-color: rgb(233, 67, 94);
+            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: column;
+        }
+        body{
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        <div class="child">Child 1</div>
+        <div class="child">Child 2</div>
+        <div class="child">Child 3</div>
+    </div>
+</body>
+
+</html>
