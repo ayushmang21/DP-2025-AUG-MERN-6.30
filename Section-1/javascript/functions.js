@@ -4,7 +4,7 @@ function addNums(num1, num2) {
     console.log(sum);
 }
 
-const add = (a,b) => a+b;
+const add = (a, b) => a + b;
 
 addNums(52, 75)
 addNums(52, 75)
@@ -51,7 +51,7 @@ console.log("Factorial: " + fact);
 
 // WAP to create a function which calculates the simple interest. Take principal, rate and time as input. prt
 
-const simInt = (p,r,t) => {
+const simInt = (p, r, t) => {
     let si = (p * r * t) / 100;
     return si;
 }
@@ -62,3 +62,13 @@ console.log("Simple Interest: Rs." + simpleInterest);
 // WAP to create a function which calculates the area of a rectangle. Take length and breadth as input.
 
 // WAP to create a function which finds the numbers divisible by 5 and 11 from 65 to 265.
+
+const divisibleBy5And11 = () => {
+    for (let i = 65; i <= 265; i++) {
+        if (i % 5 === 0 && i % 11 === 0) {
+            console.log(i);
+        }
+    }
+}
+
+divisibleBy5And11();

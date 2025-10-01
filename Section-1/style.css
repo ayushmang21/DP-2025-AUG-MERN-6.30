@@ -5,9 +5,12 @@
     border-radius: 46%;
     box-shadow: 500px 5px 100px 100px black;
     /* margin-top: 15px; */
-    margin: 20px;
-    border: 6px dashed #000000;
+    /* margin: 20px; */
+    border: 6px solid rgb(10, 161, 144);
+    border-style: groove;
     padding: 30px;
+    margin: 10px;
+
 }
 body{
     font-family: Quicksand;
@@ -16,4 +19,8 @@ body{
 }
 .head1{
     text-shadow: 5px 5px 2px grey;
+}
+
+#q{
+    font-family: Bitcount Ink;
 }
