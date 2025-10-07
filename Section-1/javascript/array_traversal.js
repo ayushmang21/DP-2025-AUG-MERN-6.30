@@ -19,8 +19,8 @@ console.log("------------------");
 
 // forEach Method
 
-nums.forEach((e,i,a) => {
-    console.log(e,i,a);
+nums.forEach((e, i, a) => {
+    // console.log(e, i, a);
 })
 
 console.log("------------------");
@@ -29,8 +29,8 @@ console.log("------------------");
 
 const sqr = [];
 
-nums.forEach((element)=>{
-    sqr.push(element*element);
+nums.forEach((element) => {
+    // sqr.push(element * element);
 })
 
 console.log(sqr);
@@ -41,10 +41,36 @@ console.log("------------------");
 
 const even = [];
 
-nums.forEach((i)=>{
-    if(i%2==0){
-        even.push(i);
+nums.forEach((i) => {
+    if (i % 2 == 0) {
+        // even.push(i);
     }
 })
 
 const prices = [340, 580, 100, 7540, 953];
+
+const gst = [];
+
+prices.forEach((p) => {
+    gst.push((p * 1.18));
+})
+
+console.log(gst);
+
+console.log("------------------");
+
+// Avg
+
+let sum = 0;
+let ne = prices.length;
+// console.log(ne);
+
+prices.forEach((p) => {
+    sum = sum + p;
+});
+
+let avg = sum / ne;
+
+console.log(avg);
+
+
