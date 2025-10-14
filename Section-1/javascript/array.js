@@ -78,25 +78,14 @@ const fruits = ['Apple', 'Banana', 'Cherry', 'Date', 'Berry', 'Mango', 'Orange']
 // 2 - Remove 'Banana' from the array.
 // 3 - Replace 'Cherry' with 'Pineapple' using splice.
 // 4 - Add 'Fig' and 'Kiwi' after 'Date' using splice.
-
-// fruits.splice(4, 0, 'Fig', 'Kiwi') //4
-// console.log(fruits)
-
 // 5 - Slice the array to get the three fruits after 'Banana'.
-// console.log(fruits.slice(2, 5)) //5
 // 6 - Remove elements from the array starting from index 2 to 5.
 // 7 - Add 'Watermelon' at index 0.
 // 8 - Slice the array to only contain the fruit at index 3 and fruit at position 5.
 // 9 - Log the element at index -5.
 // 10 - Log the index of 'Mango' in the array.
 // 11 - Log the fruit at the last index. (W/O using at() method or indexOf() method).
-// console.log(fruits[fruits.length - 1]) //11
-
 // 12 - Remove the 2nd,3rd, and 4th elements from the array using splice.
-
-// fruits.splice(1, 3) //12
-// console.log(fruits)
-
 // 13 - Log the length of the array.
 // 14 - Log index and position of 'Date', 'Banana', 'Orange' in the array.
 
