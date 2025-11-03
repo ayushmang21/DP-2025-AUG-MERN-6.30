@@ -21,7 +21,7 @@ const TodoList = () => {
             setTaskList([newTask, ...taskList]); // spread operator - to copy existing items
 
             console.log(taskList);
-            
+
             e.target.value = '';
         }
     }
@@ -46,6 +46,34 @@ const TodoList = () => {
                         className='border-2 p-3 rounded w-full block'
                         placeholder='Add a new task here...'
                         type="text" />
+                </div>
+                <div className='p-5 border-t-1'>
+                    {
+                        taskList.map((task, index) => {
+                            return (
+                                <div 
+                                style={{borderColor: task.completed ? 'green' : 'red'}}
+                                className='border-4 rounded-lg p-4 mb-4 flex justify-between items-center'>
+                                    <div className='flex gap-3'>
+                                        <input
+                                            type="checkbox"
+                                            checked={task.completed}
+                                            onChange={(e) => {
+                                                const temp = taskList;
+                                                temp[index].completed = e.target.checked;
+                                                setTaskList([...temp]);
+                                            }}
+                                        />
+
+                                        <p className='text-2xl'>{task.text}</p>
+
+                                    </div>
+                                    <p>{task.date} at {task.time}</p>
+                                    <button className='bg-red-600 text-white px-4 py-2 rounded-xl'>Delete</button>
+                                </div>
+                            )
+                        })
+                    }
                 </div>
             </div>
 
