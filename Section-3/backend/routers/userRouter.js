@@ -1,9 +1,11 @@
 const express = require('express');
 
+const Model = require('../models/userModel')
+
 const router = express.Router();
 
-router.get('/add', (req, res) => {
-    res.send("Hello from User's Add Route");
+router.post('/add', (req, res) => {
+    console.log(req.body);
 });
 
 module.exports = router;
