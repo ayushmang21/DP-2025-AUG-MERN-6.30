@@ -1,3 +1,5 @@
+const cors = require('cors'); // Cross-Origin Resource Sharing middleware
+
 const express = require('express'); // Import the Express library
 
 const UserRouter = require('./routers/userRouter');
@@ -8,6 +10,9 @@ const app = express(); // Create an Express application
 const PORT = 5000; // Define the port number
 
 // Middleware - 
+app.use(cors({
+    origin: '*', // Allow requests from any origin
+}));
 app.use(express.json()); // Parse JSON request bodies
 app.use('/user', UserRouter);
 app.use('/product', ProductRouter);

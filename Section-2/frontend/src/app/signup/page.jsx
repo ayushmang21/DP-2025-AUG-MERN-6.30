@@ -1,6 +1,8 @@
 'use client';
+import axios from 'axios';
 import { useFormik } from 'formik';
 import React from 'react'
+import toast from 'react-hot-toast';
 import * as Yup from 'yup';
 
 const SignupSchema = Yup.object().shape({
@@ -19,11 +21,20 @@ const Signup = () => {
             password: '',
             confirmPassword: ''
         },
-        onSubmit: (values) => {
+        onSubmit: (values, { resetForm }) => {
             console.log(values);
+
+            axios.post('http://localhost:5000/user/add', values)
+                .then((result) => {
+                    toast.success("User Registered Successfully..!!");
+                    resetForm();
+                }).catch((err) => {
+                    console.log(err);
+                    toast.error(" Registeration Failed..!!")
+                });
         },
         validationSchema: SignupSchema,
-    })
+    });
 
     return (
         <div className="mt-7 w-1/3 mx-auto bg-white border border-gray-200 rounded-xl shadow-2xs dark:bg-neutral-800 dark:border-neutral-700">
