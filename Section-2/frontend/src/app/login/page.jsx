@@ -1,6 +1,29 @@
+'use client';
+import axios from 'axios';
+import { useFormik } from 'formik';
 import React from 'react'
+import toast from 'react-hot-toast';
 
 const Login = () => {
+
+    const loginForm = useFormik({
+        initialValues: {
+            email: '',
+            password: ''
+        },
+        onSubmit: (values) => {
+            console.log(values);
+
+            axios.post('http://localhost:5000/user/authenticate', values)
+                .then((result) => {
+                    toast.success('Login successful');
+                }).catch((err) => {
+                    toast.error('Login failed');
+                    console.log(err);
+                });
+        }
+    });
+
     return (
         <div className='bg-pink-400'>
             <div className="mt-7 w-1/3 mx-auto bg-white border border-gray-200 rounded-xl shadow-2xs dark:bg-black dark:border-neutral-700">
@@ -54,7 +77,7 @@ const Login = () => {
                             Or
                         </div>
                         {/* Form */}
-                        <form>
+                        <form onSubmit={loginForm.handleSubmit}>
                             <div className="grid gap-y-4">
                                 {/* Form Group */}
                                 <div>
@@ -69,6 +92,8 @@ const Login = () => {
                                             type="email"
                                             id="email"
                                             name="email"
+                                            onChange={loginForm.handleChange}
+                                            value={loginForm.values.email}
                                             className="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                             required=""
                                             aria-describedby="email-error"
@@ -112,6 +137,8 @@ const Login = () => {
                                             type="password"
                                             id="password"
                                             name="password"
+                                            onChange={loginForm.handleChange}
+                                            value={loginForm.values.password}
                                             className="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                             required=""
                                             aria-describedby="password-error"
