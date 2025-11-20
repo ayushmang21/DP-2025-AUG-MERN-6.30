@@ -3,6 +3,7 @@ import { IconPencilCheck, IconTrash } from '@tabler/icons-react';
 import axios from 'axios';
 import Link from 'next/link';
 import React, { use, useEffect, useState } from 'react'
+import toast from 'react-hot-toast';
 
 const manageUsers = () => {
 
@@ -18,6 +19,16 @@ const manageUsers = () => {
     }
 
     // console.log(userList);
+
+    const deleteUser = async (userId) => {
+        const res = await axios.delete(`http://localhost:5000/user/delete/${userId}`);
+        if (res.status === 200) {
+            fetchUsers();
+            toast.success('User Deleted Successfully');
+        } else {
+            toast.error('Error in Deleting User');
+        }
+    };
 
     useEffect(() => {
         fetchUsers();
@@ -50,12 +61,13 @@ const manageUsers = () => {
                                                 <td className='p-2'>{user.email}</td>
                                                 <td className='p-2'>{user.createdAt}</td>
                                                 <td className='p-2'>
-                                                    <button>
+                                                    <button className='bg-green-600 text-white hover:bg-green-700 px-4 py-2 rounded-lg border-2'>
                                                         <Link href={`/update-user/${user._id}`}>
-                                                            <IconPencilCheck />
+                                                            <IconPencilCheck size={24} />
                                                         </Link>
                                                     </button>
-                                                    <button className='bg-red-600 text-white hover:bg-red-700 px-4 py-2 rounded-lg border-2 ml-4'>
+                                                    <button onClick={() => { deleteUser(user._id) }}
+                                                        className='bg-red-600 text-white hover:bg-red-700 px-4 py-2 rounded-lg border-2 ml-4'>
                                                         <IconTrash size={24} />
                                                     </button>
                                                 </td>
