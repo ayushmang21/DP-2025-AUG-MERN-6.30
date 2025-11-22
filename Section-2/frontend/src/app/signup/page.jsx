@@ -8,9 +8,15 @@ import * as Yup from 'yup';
 const SignupSchema = Yup.object().shape({
     name: Yup.string().min(2, 'Too Short!').max(30, 'Too Long!').required('Naam nhi hai kya..?'),
     email: Yup.string().email('Invalid email').required('Email chahiye bhai..!'),
-    password: Yup.string().min(7, 'Password too short').required('Password chahiye bhai..!'),
+    password: Yup.string()
+        .matches(/[a-z]/, "Password must contain at least one lowercase letter")
+        .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
+        .matches(/[0-9]/, "Password must contain at least one number")
+        .matches(/\W/, "Password must contain at least one special character")
+        .min(8, 'Password too short')
+        .required('Password chahiye bhai..!'),
     confirmPassword: Yup.string().required('Confirm your password').oneOf([Yup.ref('password')], 'Passwords alag hai bhai..!')
-})
+});
 
 const Signup = () => {
 

@@ -1,19 +1,43 @@
 'use client';
 import axios from 'axios';
 import { Formik } from 'formik';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
+import toast from 'react-hot-toast';
+import * as Yup from 'yup';
+
+const UpdateSchema = Yup.object().shape({
+    name: Yup.string().min(2, 'Too Short!').max(30, 'Too Long!').required('Naam nhi hai kya..?'),
+    email: Yup.string().email('Invalid email').required('Email chahiye bhai..!'),
+    password: Yup.string()
+        .matches(/[a-z]/, "Password must contain at least one lowercase letter")
+        .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
+        .matches(/[0-9]/, "Password must contain at least one number")
+        .matches(/\W/, "Password must contain at least one special character")
+        .min(8, 'Password too short')
+        .required('Password chahiye bhai..!'),
+    confirmPassword: Yup.string().required('Confirm your password').oneOf([Yup.ref('password')], 'Passwords alag hai bhai..!')
+});
 
 const UpdateUser = () => {
-
     const { id } = useParams();
-    const [userData, setUserData] = useState(null);
+    const router = useRouter();
+    const [userData, setUserData] = useState({
+        name: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+    });
 
     const fetchUserData = async () => {
-        // Fetch user data based on the id
         const res = await axios.get(`http://localhost:5000/user/getbyid/${id}`);
         console.log(res.data);
-        setUserData(res.data);
+        setUserData({
+            name: res.data.name || '',
+            email: res.data.email || '',
+            password: '',
+            confirmPassword: ''
+        });
     }
 
     useEffect(() => {
@@ -22,21 +46,30 @@ const UpdateUser = () => {
 
     const handleUpdate = async (values) => {
         console.log(values);
-    }
+
+        const res = await axios.put(`http://localhost:5000/user/update/${id}`, values);
+        if (res.status === 200) {
+            toast.success('User Updated Successfully');
+            router.push('/manage-users');
+        } else {
+            toast.error('Error in Updating User');
+        }
+    };
 
     return (
         <div>
             <h1 className='text-3xl py-5 text-center font-bold'>Update User</h1>
 
-            <div className='container mx-auto bg-amber-300 p-10 rounded-lg shadow-lg'>
+            <div className='container mx-auto w-1/2 bg-amber-300 p-10 rounded-lg shadow-lg'>
                 {
                     userData === null ? (
                         <p>Loading...Please Wait</p>
                     ) : (
                         <Formik
-                            initialValues={userData || { name: '', email: '', password: '', confirmPassword: '' }}
+                            initialValues={userData}
                             onSubmit={handleUpdate}
                             enableReinitialize={true}
+                            validationSchema={UpdateSchema}
                         >
                             {
                                 (updateForm) => {
@@ -47,13 +80,13 @@ const UpdateUser = () => {
                                                 <div>
                                                     <label
                                                         htmlFor="name"
-                                                        className="block text-sm mb-2 dark:text-white"
+                                                        className="block text-sm mb-2 dark:text-black"
                                                     >
                                                         Name
                                                     </label>
                                                     <div className="relative">
                                                         <input
-                                                            type="name"
+                                                            type="text"
                                                             id="name"
                                                             name="name"
                                                             onChange={updateForm.handleChange}
@@ -88,7 +121,7 @@ const UpdateUser = () => {
                                                 <div>
                                                     <label
                                                         htmlFor="email"
-                                                        className="block text-sm mb-2 dark:text-white"
+                                                        className="block text-sm mb-2 dark:text-black"
                                                     >
                                                         Email address
                                                     </label>
@@ -129,7 +162,7 @@ const UpdateUser = () => {
                                                 <div>
                                                     <label
                                                         htmlFor="password"
-                                                        className="block text-sm mb-2 dark:text-white"
+                                                        className="block text-sm mb-2 dark:text-black"
                                                     >
                                                         Password
                                                     </label>
@@ -170,7 +203,7 @@ const UpdateUser = () => {
                                                 <div>
                                                     <label
                                                         htmlFor="confirmPassword"
-                                                        className="block text-sm mb-2 dark:text-white"
+                                                        className="block text-sm mb-2 dark:text-black"
                                                     >
                                                         Confirm Password
                                                     </label>
@@ -218,7 +251,7 @@ const UpdateUser = () => {
                                                         />
                                                     </div>
                                                     <div className="ms-3">
-                                                        <label htmlFor="remember-me" className="text-sm dark:text-white">
+                                                        <label htmlFor="remember-me" className="text-sm dark:text-black">
                                                             I accept the{" "}
                                                             <a
                                                                 className="text-blue-600 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium dark:text-blue-500"
@@ -234,7 +267,7 @@ const UpdateUser = () => {
                                                     type="submit"
                                                     className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
                                                 >
-                                                    Sign up
+                                                    Update
                                                 </button>
                                             </div>
                                         </form>

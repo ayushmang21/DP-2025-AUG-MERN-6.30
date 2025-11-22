@@ -63,7 +63,7 @@ const manageUsers = () => {
                                                 <td className='p-2'>
                                                     <button className='bg-green-600 text-white hover:bg-green-700 px-4 py-2 rounded-lg border-2'>
                                                         <Link href={`/update-user/${user._id}`}>
-                                                            <IconPencilCheck size={24} className='invisible hover:visible' />
+                                                            <IconPencilCheck size={24} className='' />
                                                         </Link>
                                                     </button>
                                                     <button onClick={() => { deleteUser(user._id) }}
